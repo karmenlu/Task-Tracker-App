@@ -5,8 +5,8 @@ defmodule Tasks1.Users.User do
 
   schema "users" do
     field :name, :string
-    has_many :tasks_created, Tasks1.Tasks.Task
-    has_many :tasks_assigned, Tasks1.Tasks.Task
+    has_many :tasksCreated, Tasks1.Tasks.Task, foreign_key: :creator_id
+    has_many :tasksAssigned, Tasks1.Tasks.Task, foreign_key: :doer_id
     timestamps()
   end
 

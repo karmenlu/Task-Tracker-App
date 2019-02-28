@@ -62,8 +62,10 @@
 
         <div class="col-4">
           <%= if @current_user do %>
-            <%= render HuskyShopWeb.TaskView, "index.html",
-                  Map.put(assigns, :tasks, @current_user.tasks) %>
+            <%= render Tasks1Web.TaskView, "index.html",
+                  Map.put(assigns, :tasks, @current_user.tasksCreated) %>
+            <%= render Tasks1Web.TaskView, "index.html",
+                  Map.put(assigns, :tasks, @current_user.tasksAssigned) %>
           <% else %>
             <p><%= link "Register", to: Routes.user_path(@conn, :new) %></p>
           <% end %>

@@ -37,7 +37,11 @@ defmodule Tasks1.Users do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
-  def get_user(id), do: Repo.get(User, id)
+  def get_user(id) do
+    Repo.one from u in User,
+      where: u.id == ^id,
+      preload: [:tasksCreated, :tasksAssigned]
+  end
 
   def get_user_by_name(name) do
     Repo.get_by(User, name: name)

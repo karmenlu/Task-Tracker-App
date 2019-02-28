@@ -8,8 +8,6 @@ defmodule Tasks1.Tasks.Task do
     field :description, :string
     field :timeSpent, :integer
     field :title, :string
-    # field :creator, :id
-    #field :doer, :id
     belongs_to :creator, Tasks1.Users.User
     belongs_to :doer, Tasks1.Users.User
 
@@ -19,7 +17,7 @@ defmodule Tasks1.Tasks.Task do
   @doc false
   def changeset(task, attrs) do
     task
-    |> cast(attrs, [:title, :description, :completeHuh, :timeSpent])
-    |> validate_required([:title, :description, :completeHuh, :timeSpent])
+    |> cast(attrs, [:title, :description, :completeHuh, :timeSpent, :creator_id, :doer_id])
+    |> validate_required([:title, :description, :completeHuh, :timeSpent, :creator_id, :doer_id])
   end
 end
