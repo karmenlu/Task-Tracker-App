@@ -13,9 +13,7 @@
 alias Tasks1.Repo
 alias Tasks1.Users.User
 
-Repo.insert!(%User{name: "Carrie Senia"})
-Repo.insert!(%User{name: "Alice Junior"})
-
+Repo.insert!(%User{name: "Alice"})
+Repo.insert!(%User{name: "Bob"})
+Repo.insert!(%User{name: "Carol"})
 alias Tasks1.Tasks.Task
-#Repo.insert!(%Task{title: "Do hwmk", description: "Read pages 1-2", creator: 
-#  "Carrie Senia", doer: "Alice Junior"})

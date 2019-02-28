@@ -5,23 +5,39 @@
     </div>
   <% end %>
 
-  <%= label f, :title %>
-  <%= text_input f, :title %>
-  <%= error_tag f, :title %>
+  <div class="form-group">
+    <%= label f, :title %>
+    <%= text_input f, :title %>
+    <%= error_tag f, :title %>
+  </div>
 
-  <%= label f, :description %>
-  <%= text_input f, :description %>
-  <%= error_tag f, :description %>
+  <div class="form-group">
+    <%= label f, :description %>
+    <%= text_input f, :description %>
+    <%= error_tag f, :description %>
+  </div>
 
-  <%= label f, :completeHuh %>
-  <%= checkbox f, :completeHuh %>
-  <%= error_tag f, :completeHuh %>
+  <%= if !assigns[:task] or @current_user.id == Map.get(@task, :doer_id, nil) do %>
+    <div class="form-group">
+      <%= label f, :completeHuh %>
+      <%= checkbox f, :completeHuh %>
+      <%= error_tag f, :completeHuh %>
+    </div>
 
-  <%= label f, :timeSpent %>
-  <%= number_input f, :timeSpent %>
-  <%= error_tag f, :timeSpent %>
+    <div class="form-group">
+      <%= label f, :timeSpent %>
+      <%= number_input f, :timeSpent %>
+      <%= error_tag f, :timeSpent %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :doer_id %>
+    <%= select f, :doer_id,
+      [ {"No one", 0} | Enum.map(Tasks1.Users.list_users(), &{&1.name, &1.id}) ] %>
+  </div>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>

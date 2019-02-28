@@ -51,13 +51,4 @@ defmodule Tasks1Web.UserController do
         render(conn, "edit.html", user: user, changeset: changeset)
     end
   end
-
-  def delete(conn, %{"id" => id}) do
-    user = Users.get_user!(id)
-    {:ok, _user} = Users.delete_user(user)
-
-    conn
-    |> put_flash(:info, "User deleted successfully.")
-    |> redirect(to: Routes.user_path(conn, :index))
-  end
 end

@@ -56,19 +56,8 @@
       </div>
 
       <div class="row">
-        <div class="col-8">
+        <div class="col-12">
           <%= render @view_module, @view_template, assigns %>
-        </div>
-
-        <div class="col-4">
-          <%= if @current_user do %>
-            <%= render Tasks1Web.TaskView, "index.html",
-                  Map.put(assigns, :tasks, @current_user.tasksCreated) %>
-            <%= render Tasks1Web.TaskView, "index.html",
-                  Map.put(assigns, :tasks, @current_user.tasksAssigned) %>
-          <% else %>
-            <p><%= link "Register", to: Routes.user_path(@conn, :new) %></p>
-          <% end %>
         </div>
       </div>
     </div>

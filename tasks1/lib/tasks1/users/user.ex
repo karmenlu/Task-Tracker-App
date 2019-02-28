@@ -4,8 +4,7 @@ defmodule Tasks1.Users.User do
 
 
   schema "users" do
-    field :name, :string
-    has_many :tasksCreated, Tasks1.Tasks.Task, foreign_key: :creator_id
+    field :name, :string, unique: true
     has_many :tasksAssigned, Tasks1.Tasks.Task, foreign_key: :doer_id
     timestamps()
   end
@@ -15,5 +14,6 @@ defmodule Tasks1.Users.User do
     user
     |> cast(attrs, [:name])
     |> validate_required([:name])
+    |> unique_constraint(:name)
   end
 end

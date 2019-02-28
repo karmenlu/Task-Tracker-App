@@ -68,6 +68,9 @@ defmodule Tasks1.Tasks do
 
   """
   def update_task(%Task{} = task, attrs) do
+    IO.inspect(attrs)
+    IO.inspect(task)
+    IO.inspect(task |> Task.changeset(attrs))
     task
     |> Task.changeset(attrs)
     |> Repo.update()
