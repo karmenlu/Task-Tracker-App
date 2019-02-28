@@ -1,0 +1,48 @@
+<h1>Show Task</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @task.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </li>
+
+  <li>
+    <strong>Completehuh:</strong>
+    <%= @task.completeHuh %>
+  </li>
+
+  <li>
+    <strong>Timespent:</strong>
+    <%= @task.timeSpent %>
+  </li>
+
+</ul>
+
+<%= if @current_user do %>
+  <div>
+    <%= form_for @item_cset, Routes.cart_item_path(@conn, :create),
+      [class: "form-inline"], fn f -> %>
+      <%= hidden_input f, :user_id %>
+      <%= hidden_input f, :task_id %>
+
+      <div class="form-group">
+        <%= number_input f, :count, class: "form-control" %>
+        <%= error_tag f, :count %>
+      </div>
+
+      <div>
+        <%= submit "Add to Cart", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+      
+<span><%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></span>
+<span><%= link "Back", to: Routes.task_path(@conn, :index) %></span>

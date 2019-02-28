@@ -5,7 +5,8 @@ defmodule Tasks1.Users.User do
 
   schema "users" do
     field :name, :string
-
+    has_many :tasks_created, Tasks1.Tasks.Task
+    has_many :tasks_assigned, Tasks1.Tasks.Task
     timestamps()
   end
 
