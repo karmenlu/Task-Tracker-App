@@ -61,14 +61,14 @@ config :logger, level: :info
 # Alternatively, you can configure exactly which server to
 # start per endpoint:
 #
-#     config :tasks1, Tasks1Web.Endpoint, server: true
+config :tasks1, Tasks1Web.Endpoint, server: true
 #
 # Note you can't rely on `System.get_env/1` when using releases.
 # See the releases documentation accordingly.
 
 # Finally import the config/prod.secret.exs which should be versioned
 # separately.
-# import_config "prod.secret.exs"
+import_config "prod.secret.exs"
 
 # Attribution to Nat Tuck husky_shop repo
 get_secret = fn name ->
@@ -85,9 +85,3 @@ end
 config :tasks1, Tasks1Web.Endpoint,
   secret_key_base: get_secret.("key_base");
 
-# Configure your database
-config :tasks1, Tasks1.Repo,
-  username: "tasks1",
-  password: get_secret.("db_pass"),
-  database: "task1_prod",
-pool_size: 15
