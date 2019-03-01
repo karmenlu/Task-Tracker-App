@@ -9,8 +9,8 @@ Restart=on-failure
 Environment=MIX_ENV=prod "PORT=4794"
 Environment=LANG=en_US.UTF-8
 
-WorkingDirectory=/home/tasks1/tasks1
-ExecStart=/home/tasks1/tasks1/start.sh
+WorkingDirectory=/home/tasks1/tasks1/tasks1
+ExecStart=/home/tasks1/tasks1/tasks1/start.sh
 
 [Install]
 WantedBy=multi-user.target
