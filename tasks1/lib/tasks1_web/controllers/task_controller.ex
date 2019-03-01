@@ -56,7 +56,10 @@ defmodule Tasks1Web.TaskController do
     task = Tasks.get_task!(id)
 
     task_params = Map.put(task_params, "doer_id", _parse_doer(Map.get(task_params, "doer_id")))
-    task_params = Map.put(task_params, "timeSpent", closestFifteen(elem(Integer.parse(Map.get(task_params, "timeSpent")), 0)))
+    if Map.get(task_params, "timeSpent", nil) != nil do
+      task_params = Map.put(task_params, "timeSpent", closestFifteen(elem(Integer.parse(Map.get(task_params, "timeSpent")), 0)))
+    else
+    end
     case Tasks.update_task(task, task_params) do
       {:ok, task} ->
         conn
