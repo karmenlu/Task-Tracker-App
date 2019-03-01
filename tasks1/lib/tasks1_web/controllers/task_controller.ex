@@ -47,12 +47,17 @@ defmodule Tasks1Web.TaskController do
     end
   end
 
+  def closestFifteen(num) do
+    remain = rem(num, 15)
+    num - remain
+  end
+
   def update(conn, %{"id" => id, "task" => task_params}) do
     task = Tasks.get_task!(id)
 
-    task_params2 = Map.put(task_params, "doer_id", _parse_doer(Map.get(task_params, "doer_id")))
-
-    case Tasks.update_task(task, task_params2) do
+    task_params = Map.put(task_params, "doer_id", _parse_doer(Map.get(task_params, "doer_id")))
+    task_params = Map.put(task_params, "timeSpent", closestFifteen(elem(Integer.parse(Map.get(task_params, "timeSpent")), 0)))
+    case Tasks.update_task(task, task_params) do
       {:ok, task} ->
         conn
         |> put_flash(:info, "Task updated successfully.")
